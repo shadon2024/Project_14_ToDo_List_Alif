@@ -179,3 +179,18 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
     }
 }
+
+protocol TaskUpdateDelegate: AnyObject {
+    func updateTask(_ task: Task)
+}
+
+extension HomeViewController: TaskUpdateDelegate {
+    func updateTask(_ task: Task) {
+        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
+            tasks[index] = task
+        } else {
+            tasks.append(task)
+        }
+        tableView.reloadData()
+    }
+}

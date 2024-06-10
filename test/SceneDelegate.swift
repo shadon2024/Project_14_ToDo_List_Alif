@@ -41,9 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func showTabBar() {
         
         // Создаем изображение нужного размера
-        let imageSize = CGSize(width: 50, height: 50) // Примерный размер изображения
+        let imageSize = CGSize(width: 47, height: 47) // Примерный размер изображения
         let imageHome = UIImage(systemName: "list.bullet.circle.fill")?.resize(targetSize: imageSize)
         let imageUser = UIImage(systemName: "person.crop.circle")?.resize(targetSize: imageSize)
+        let imageHistory = UIImage(systemName: "archivebox.circle")?.resize(targetSize: imageSize)
 
         // Устанавливаем изображение в качестве значка вкладки таббара
         //homeNavController.tabBarItem.image = image
@@ -62,11 +63,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         userNavController.tabBarItem.title = "User"
         userNavController.tabBarItem.image = imageUser
         
+        let historyTabVC = HistoryViewController()
+        let historyController = UINavigationController(rootViewController: historyTabVC)
+        historyController.tabBarItem.title = "History"
+        historyController.tabBarItem.image = imageHistory
         
         
         // Установка размера изображения
         homeNavController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
         userNavController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
+        historyController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
         
         // Создание TabBarController
         let tabBarController = UITabBarController()
@@ -79,7 +85,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         
         // Установка контроллеров во вкладки TabBarController
-        tabBarController.viewControllers = [homeNavController, userNavController]
+        tabBarController.viewControllers = [homeNavController, historyController, userNavController]
         
         // Установка цвета фона таббара
         tabBarController.tabBar.barTintColor = .brown
