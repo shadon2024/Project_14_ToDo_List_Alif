@@ -68,3 +68,39 @@ import UIKit
 //        }
 //    }
 //}
+
+
+
+//@objc func addTaskButtonTapped() {
+//    let alert = UIAlertController(title: "Новая задача", message: "Введите информацию о задаче", preferredStyle: .alert)
+//    alert.addTextField { textField in
+//        textField.placeholder = "Название задачи"
+//    }
+//    alert.addTextField { textField in
+//        textField.placeholder = "Описание задачи"
+//    }
+//
+//    let statusSegmentedControl = UISegmentedControl(items: ["В работе", "Ожидание", "Закрыта"])
+//    statusSegmentedControl.selectedSegmentIndex = 0
+//    alert.view.addSubview(statusSegmentedControl)
+//
+//    statusSegmentedControl.snp.makeConstraints { make in
+//        make.top.equalTo(alert.textFields!.last!.snp.bottom).offset(10)
+//        make.centerX.equalTo(alert.view)
+//        make.width.equalTo(250)
+//    }
+//
+//    alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+//    alert.addAction(UIAlertAction(title: "Сохранить", style: .default, handler: { _ in
+//        guard let name = alert.textFields?[0].text, !name.isEmpty,
+//              let description = alert.textFields?[1].text else { return }
+//
+//        let status = statusSegmentedControl.titleForSegment(at: statusSegmentedControl.selectedSegmentIndex) ?? "В работе"
+//        let taskId = self.ref.childByAutoId().key ?? UUID().uuidString
+//        let newTask = Task(id: taskId, name: name, description: description, status: status, executor: "Не назначен", deadline: "Не указан")
+//
+//        self.ref.child(taskId).setValue(newTask.toDictionary())
+//    }))
+//
+//    present(alert, animated: true, completion: nil)
+//}

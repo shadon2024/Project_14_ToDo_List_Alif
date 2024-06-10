@@ -23,6 +23,7 @@ class TaskDetailViewController: UIViewController {
     var statusLabel: UILabel!
     var executorLabel: UILabel!
     var deadlineLabel: UILabel!
+    var director: UILabel!
     
     var commentsLabel =  UILabel()
     var commentsTextView = UITextView()
@@ -50,6 +51,20 @@ class TaskDetailViewController: UIViewController {
         button.layer.cornerRadius = 8
         return button
     }()
+    
+    
+    let addPushMassegeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Пуш-уведомления", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(nil, action: #selector(addPushMassegeButtonTapped), for: .touchUpInside)
+        button.layer.cornerRadius = 8
+        return button
+    }()
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +82,8 @@ class TaskDetailViewController: UIViewController {
     }
 
 
+    
+    
 
 
 
@@ -86,9 +103,14 @@ class TaskDetailViewController: UIViewController {
 
         deadlineLabel = UILabel()
         view.addSubview(deadlineLabel)
+        
+        director = UILabel()
+        view.addSubview(director)
+        
 
         view.addSubview(addParametrButton)
         view.addSubview(addCommentButton)
+        view.addSubview(addPushMassegeButton)
         
         
         nameLabel = UILabel()
@@ -105,7 +127,7 @@ class TaskDetailViewController: UIViewController {
         
         view.addSubview(commentsTextView)
         commentsTextView.isEditable = false
-        commentsTextView.backgroundColor = .red
+        commentsTextView.backgroundColor = .systemGray6
         commentsTextView.font = .systemFont(ofSize: 18, weight: .regular)
         
         
@@ -148,10 +170,14 @@ class TaskDetailViewController: UIViewController {
                 make.left.right.equalTo(executorLabel)
             }
             
+            director.snp.makeConstraints { make in
+                make.top.equalTo(deadlineLabel.snp.bottom).offset(10)
+                make.left.equalTo(20)
+            }
             
             commentsLabel.snp.makeConstraints { make in
-                make.top.equalTo(deadlineLabel.snp.bottom).offset(10)
-                make.left.equalTo(executorLabel)
+                make.top.equalTo(director.snp.bottom).offset(10)
+                make.left.equalTo(20)
             }
             
             
@@ -163,7 +189,7 @@ class TaskDetailViewController: UIViewController {
             }
             
             addCommentTextField.snp.makeConstraints { make in
-                make.top.equalTo(commentsTextView.snp.bottom).offset(10)
+                make.top.equalTo(commentsTextView.snp.bottom).offset(30)
                 make.left.equalTo(20)
                 make.right.equalTo(-20)
                 make.height.equalTo(40)
@@ -171,14 +197,21 @@ class TaskDetailViewController: UIViewController {
             
             
             addParametrButton.snp.makeConstraints { make in
-                make.top.equalTo(view.safeAreaLayoutGuide).offset(400)
+                make.top.equalTo(addCommentTextField.snp.bottom).offset(10)
                 make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
                 make.height.equalTo(40)
                 make.width.equalTo(200)
             }
             
             addCommentButton.snp.makeConstraints { make in
-                make.top.equalTo(addParametrButton.snp.bottom).offset(20)
+                make.top.equalTo(addParametrButton.snp.bottom).offset(10)
+                make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
+                make.height.equalTo(40)
+                make.width.equalTo(200)
+            }
+            
+            addPushMassegeButton.snp.makeConstraints { make in
+                make.top.equalTo(addCommentButton.snp.bottom).offset(10)
                 make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
                 make.height.equalTo(40)
                 make.width.equalTo(200)
@@ -192,6 +225,7 @@ class TaskDetailViewController: UIViewController {
             statusLabel.text = "Статус задачи: \(task.status)"
             executorLabel.text = "Исполнитель: \(task.executor)"
             deadlineLabel.text = "Срок выполнения: \(task.deadline)"
+            director.text = "Постановщик: \(task.director)"
         }
     
     
@@ -206,6 +240,7 @@ class TaskDetailViewController: UIViewController {
         //navigationController?.pushViewController(editTaskVC, animated: true)
         present(editTaskVC, animated: true)
     }
+    
     
     
     
@@ -271,6 +306,12 @@ class TaskDetailViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
         return formatter.string(from: date)
+    }
+    
+    
+    @objc func addPushMassegeButtonTapped() {
+        let editTaskVC = AddNotificationViewController()
+        present(editTaskVC, animated: true)
     }
 
 }

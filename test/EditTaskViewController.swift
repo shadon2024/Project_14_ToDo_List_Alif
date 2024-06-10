@@ -23,6 +23,7 @@ class EditTaskViewController: UIViewController {
     var statusTextField: UITextField!
     var executorTextField: UITextField!
     var deadlineTextField: UITextField!
+    var directorTextField: UITextField!
     
     
     let saveButton: UIButton = {
@@ -74,6 +75,12 @@ class EditTaskViewController: UIViewController {
         deadlineTextField.placeholder = "Срок выполнения"
         deadlineTextField.borderStyle = .roundedRect
         view.addSubview(deadlineTextField)
+        
+        
+        directorTextField = UITextField()
+        directorTextField.placeholder = "Постановщик"
+        directorTextField.borderStyle = .roundedRect
+        view.addSubview(directorTextField)
 
     
         view.addSubview(saveButton)
@@ -82,37 +89,44 @@ class EditTaskViewController: UIViewController {
     func setupConstraints() {
         // Установка констрейнтов для UI элементов
         nameTextField.snp.makeConstraints { make in
-                    make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-                    make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
-                    make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
-                }
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.left.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.right.equalTo(view.safeAreaLayoutGuide).offset(-20)
+        }
 
-                descriptionTextField.snp.makeConstraints { make in
-                    make.top.equalTo(nameTextField.snp.bottom).offset(10)
-                    make.left.right.equalTo(nameTextField)
-                }
+        descriptionTextField.snp.makeConstraints { make in
+            make.top.equalTo(nameTextField.snp.bottom).offset(10)
+            make.left.right.equalTo(nameTextField)
+        }
 
-                statusTextField.snp.makeConstraints { make in
-                    make.top.equalTo(descriptionTextField.snp.bottom).offset(10)
-                    make.left.right.equalTo(descriptionTextField)
-                }
+        statusTextField.snp.makeConstraints { make in
+            make.top.equalTo(descriptionTextField.snp.bottom).offset(10)
+            make.left.right.equalTo(descriptionTextField)
+        }
 
-                executorTextField.snp.makeConstraints { make in
-                    make.top.equalTo(statusTextField.snp.bottom).offset(10)
-                    make.left.right.equalTo(statusTextField)
-                }
+        executorTextField.snp.makeConstraints { make in
+            make.top.equalTo(statusTextField.snp.bottom).offset(10)
+            make.left.right.equalTo(statusTextField)
+        }
 
-                deadlineTextField.snp.makeConstraints { make in
-                    make.top.equalTo(executorTextField.snp.bottom).offset(10)
-                    make.left.right.equalTo(executorTextField)
-                }
+        deadlineTextField.snp.makeConstraints { make in
+            make.top.equalTo(executorTextField.snp.bottom).offset(10)
+            make.left.right.equalTo(executorTextField)
+        }
+        
+        directorTextField.snp.makeConstraints { make in
+            make.top.equalTo(deadlineTextField.snp.bottom).offset(10)
+            make.left.right.equalTo(executorTextField)
+        }
+        
 
-                saveButton.snp.makeConstraints { make in
-                    make.top.equalTo(deadlineTextField.snp.bottom).offset(20)
-                    make.width.equalTo(180)
-                    make.height.equalTo(40)
-                    make.centerX.equalTo(view)
-                }
+        saveButton.snp.makeConstraints { make in
+            make.top.equalTo(directorTextField.snp.bottom).offset(20)
+            make.width.equalTo(180)
+            make.height.equalTo(40)
+            make.centerX.equalTo(view)
+        }
+        
     }
 
     func displayTaskDetails() {
@@ -122,6 +136,7 @@ class EditTaskViewController: UIViewController {
         statusTextField.text = task.status
         executorTextField.text = task.executor
         deadlineTextField.text = task.deadline
+        directorTextField.text = task.director
     }
     
     
@@ -133,14 +148,16 @@ class EditTaskViewController: UIViewController {
               let description = descriptionTextField.text,
               let status = statusTextField.text,
               let executor = executorTextField.text,
-              let deadline = deadlineTextField.text else { return }
+              let deadline = deadlineTextField.text,
+              let director = directorTextField.text else { return }
 
         let updatedTask = [
             "name": name,
             "description": description,
             "status": status,
             "executor": executor,
-            "deadline": deadline
+            "deadline": deadline,
+            "director": director
         ]
 
         ref.updateChildValues(updatedTask) { error, _ in

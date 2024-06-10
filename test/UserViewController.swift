@@ -50,24 +50,24 @@ class UserViewController: UIViewController {
     }
     
     
-//    lazy var textEmail: UILabel = {
-//        var text = UILabel()
-//        text.text = "Email"
-//        text.textAlignment = .center
-//        //text.textColor = .white
-//        text.font = .systemFont(ofSize: 20, weight: .semibold)
-//        return text
-//    }()
-//
-//
-//    lazy var textName: UILabel = {
-//        var text = UILabel()
-//        text.text = "Name"
-//        text.textAlignment = .center
-//        //text.textColor = .white
-//        text.font = .systemFont(ofSize: 20, weight: .semibold)
-//        return text
-//    }()
+    lazy var textEmail: UILabel = {
+        var text = UILabel()
+        text.text = "Email: \(Auth.auth().currentUser?.email ?? "nil")"
+        text.textAlignment = .center
+        //text.textColor = .white
+        text.font = .systemFont(ofSize: 20, weight: .semibold)
+        return text
+    }()
+
+
+    lazy var textName: UILabel = {
+        var text = UILabel()
+        text.text = "Name: \(Auth.auth().currentUser?.displayName ?? "nil")"
+        text.textAlignment = .center
+        //text.textColor = .white
+        text.font = .systemFont(ofSize: 20, weight: .semibold)
+        return text
+    }()
 //
     
     
@@ -78,31 +78,31 @@ class UserViewController: UIViewController {
         view.addSubview(logoutButton)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         
-//        view.addSubview(textEmail)
-//        textEmail.translatesAutoresizingMaskIntoConstraints = false
-//
-//        view.addSubview(textName)
-//        textName.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textEmail)
+        textEmail.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(textName)
+        textName.translatesAutoresizingMaskIntoConstraints = false
         
         
-//        textEmail.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide).offset(200)
-//            make.width.equalTo(100)
-//            make.height.equalTo(50)
-//            make.centerX.equalToSuperview()
-//        }
-//
-//        textName.snp.makeConstraints { make in
-//            make.top.equalTo(textEmail.snp.bottom).offset(20)
-//            make.width.equalTo(100)
-//            make.height.equalTo(50)
-//            make.centerX.equalToSuperview()
-//        }
+        textEmail.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(200)
+            make.width.equalTo(300)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+        }
+
+        textName.snp.makeConstraints { make in
+            make.top.equalTo(textEmail.snp.bottom).offset(20)
+            make.width.equalTo(300)
+            make.height.equalTo(50)
+            make.centerX.equalToSuperview()
+        }
         
         logoutButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(200)
-            make.width.equalTo(100)
-            make.height.equalTo(50)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(370)
+            make.width.equalTo(200)
+            make.height.equalTo(60)
             make.centerX.equalToSuperview()
         }
     }

@@ -30,6 +30,8 @@
 		847D67692C145F3C00AA7795 /* test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 847D67672C145F3C00AA7795 /* test.xcdatamodeld */; };
 		847D676B2C145F4000AA7795 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847D676A2C145F4000AA7795 /* Assets.xcassets */; };
 		847D676E2C145F4000AA7795 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 847D676C2C145F4000AA7795 /* LaunchScreen.storyboard */; };
+		849675FA2C160F870010CFF5 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849675F92C160F870010CFF5 /* HomeTableViewCell.swift */; };
+		849675FC2C164A6C0010CFF5 /* AddNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849675FB2C164A6C0010CFF5 /* AddNotificationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		847D676A2C145F4000AA7795 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847D676D2C145F4000AA7795 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		847D676F2C145F4000AA7795 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		849675F92C160F870010CFF5 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		849675FB2C164A6C0010CFF5 /* AddNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotificationViewController.swift; sourceTree = "<group>"; };
 		9460F0B3BB91EC4F81BB1F61 /* Pods_test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FA3F28AFC613205510C2EEC /* Pods-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.debug.xcconfig"; path = "Target Support Files/Pods-test/Pods-test.debug.xcconfig"; sourceTree = "<group>"; };
 		FEE783E0B87B8FFE150546BF /* Pods-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.release.xcconfig"; path = "Target Support Files/Pods-test/Pods-test.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,7 +116,9 @@
 				847481E42C14AFEC0076F4D5 /* UserViewController.swift */,
 				847481E82C14F8670076F4D5 /* Task.swift */,
 				847481EA2C1534EF0076F4D5 /* TaskDetailViewController.swift */,
+				849675FB2C164A6C0010CFF5 /* AddNotificationViewController.swift */,
 				847481EE2C156BD20076F4D5 /* EditTaskViewController.swift */,
+				849675F92C160F870010CFF5 /* HomeTableViewCell.swift */,
 				847481EC2C15382E0076F4D5 /* Comment.swift */,
 				847481E62C14F0060076F4D5 /* AuthManager.swift */,
 				847D67642C145F3C00AA7795 /* Main.storyboard */,
@@ -262,9 +268,11 @@
 			files = (
 				847481E52C14AFEC0076F4D5 /* UserViewController.swift in Sources */,
 				847481E72C14F0060076F4D5 /* AuthManager.swift in Sources */,
+				849675FA2C160F870010CFF5 /* HomeTableViewCell.swift in Sources */,
 				847D67632C145F3C00AA7795 /* LoginViewController.swift in Sources */,
 				847481E12C147B760076F4D5 /* RegisterViewController.swift in Sources */,
 				847481EB2C1534EF0076F4D5 /* TaskDetailViewController.swift in Sources */,
+				849675FC2C164A6C0010CFF5 /* AddNotificationViewController.swift in Sources */,
 				847D67692C145F3C00AA7795 /* test.xcdatamodeld in Sources */,
 				847D675F2C145F3C00AA7795 /* AppDelegate.swift in Sources */,
 				847481EF2C156BD20076F4D5 /* EditTaskViewController.swift in Sources */,
