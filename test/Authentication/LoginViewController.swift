@@ -17,7 +17,6 @@ class LoginViewController: UIViewController {
         let indicator = UIActivityIndicatorView()
         indicator.style = .large
         indicator.color = .white
-        //indicator.center = view.center
         indicator.hidesWhenStopped = true
         return indicator
     }()
@@ -119,10 +118,6 @@ class LoginViewController: UIViewController {
                     // Перейти к следующему экрану или показать сообщение об успешном входе
                     self.showSuccess("Login successful")
                     
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                        self.navigateToHomeViewController()
-//                        self.authenticateUser()
-//                    }
                     DispatchQueue.main.async {
                         self.authenticateUser()
                         self.navigateToHomeViewController()

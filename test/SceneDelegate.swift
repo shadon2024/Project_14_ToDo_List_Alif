@@ -14,7 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        //guard let _ = (scene as? UIWindowScene) else { return }
         
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -43,11 +42,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Создаем изображение нужного размера
         let imageSize = CGSize(width: 47, height: 47) // Примерный размер изображения
         let imageHome = UIImage(systemName: "list.bullet.circle.fill")?.resize(targetSize: imageSize)
-        let imageUser = UIImage(systemName: "person.crop.circle")?.resize(targetSize: imageSize)
+        let imagePerson = UIImage(systemName: "person.crop.circle")?.resize(targetSize: imageSize)
         let imageHistory = UIImage(systemName: "archivebox.circle")?.resize(targetSize: imageSize)
+        let imageUsers = UIImage(systemName: "person.2.circle.fill")?.resize(targetSize: imageSize)
 
-        // Устанавливаем изображение в качестве значка вкладки таббара
-        //homeNavController.tabBarItem.image = image
         
         
         
@@ -56,23 +54,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let homeNavController = UINavigationController(rootViewController: homeTabVC)
         homeNavController.tabBarItem.title = "Task"
         homeNavController.tabBarItem.image = imageHome
-        //homeNavController.navigationBar.backgroundColor = .systemGreen
         
-        let userTabVC = UserViewController()
-        let userNavController = UINavigationController(rootViewController: userTabVC)
-        userNavController.tabBarItem.title = "User"
-        userNavController.tabBarItem.image = imageUser
+        let personTabVC = PersonViewController()
+        let personNavController = UINavigationController(rootViewController: personTabVC)
+        personNavController.tabBarItem.title = "Person"
+        personNavController.tabBarItem.image = imagePerson
         
         let historyTabVC = HistoryViewController()
         let historyController = UINavigationController(rootViewController: historyTabVC)
         historyController.tabBarItem.title = "History"
         historyController.tabBarItem.image = imageHistory
         
+        let usersTabVC = UsersViewController()
+        let usersController = UINavigationController(rootViewController: usersTabVC)
+        usersController.tabBarItem.title = "Users"
+        usersController.tabBarItem.image = imageUsers
+        
         
         // Установка размера изображения
         homeNavController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
-        userNavController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
+        personNavController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
         historyController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
+        usersController.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 6, right: 0)
         
         // Создание TabBarController
         let tabBarController = UITabBarController()
@@ -85,7 +88,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         
         // Установка контроллеров во вкладки TabBarController
-        tabBarController.viewControllers = [homeNavController, historyController, userNavController]
+        tabBarController.viewControllers = [homeNavController, historyController, usersController, personNavController]
         
         // Установка цвета фона таббара
         tabBarController.tabBar.barTintColor = .brown

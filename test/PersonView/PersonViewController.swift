@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import SnapKit
 
-class UserViewController: UIViewController {
+class PersonViewController: UIViewController {
 
     
     override func viewDidLoad() {
@@ -17,7 +17,7 @@ class UserViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        self.title = "User"
+        self.title = "Person"
         setupLogout()
     }
     
