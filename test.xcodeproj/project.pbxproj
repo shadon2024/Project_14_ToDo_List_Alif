@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7273C46EF10D3266ADA56F6D /* Pods_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9460F0B3BB91EC4F81BB1F61 /* Pods_test.framework */; };
 		84039FEC2C146DB300EE6BBF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84039FEB2C146DB300EE6BBF /* GoogleService-Info.plist */; };
+		84511DCC2C18134B009FADF8 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511DCB2C18134B009FADF8 /* CommentTableViewCell.swift */; };
+		84511DCF2C182520009FADF8 /* ListUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511DCE2C182520009FADF8 /* ListUser.swift */; };
+		84511DD42C188E3D009FADF8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511DD32C188E3D009FADF8 /* DetailViewController.swift */; };
 		847481D52C1477520076F4D5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 847481D42C1477520076F4D5 /* FirebaseAnalytics */; };
 		847481D72C1477520076F4D5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 847481D62C1477520076F4D5 /* FirebaseAuth */; };
 		847481D92C1477520076F4D5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 847481D82C1477520076F4D5 /* FirebaseDatabase */; };
@@ -38,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		84039FEB2C146DB300EE6BBF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84511DCB2C18134B009FADF8 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		84511DCE2C182520009FADF8 /* ListUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUser.swift; sourceTree = "<group>"; };
+		84511DD32C188E3D009FADF8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		847481E02C147B760076F4D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		847481E22C147F970076F4D5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		847481E42C14AFEC0076F4D5 /* PersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +96,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		84511DCD2C1824EC009FADF8 /* ListUserView */ = {
+			isa = PBXGroup;
+			children = (
+				84511DCE2C182520009FADF8 /* ListUser.swift */,
+			);
+			path = ListUserView;
+			sourceTree = "<group>";
+		};
+		84511DD02C1879DF009FADF8 /* AddTaskNewView */ = {
+			isa = PBXGroup;
+			children = (
+				84511DD32C188E3D009FADF8 /* DetailViewController.swift */,
+			);
+			path = AddTaskNewView;
+			sourceTree = "<group>";
+		};
 		847D67522C145F3C00AA7795 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +133,8 @@
 		847D675D2C145F3C00AA7795 /* test */ = {
 			isa = PBXGroup;
 			children = (
+				84511DD02C1879DF009FADF8 /* AddTaskNewView */,
+				84511DCD2C1824EC009FADF8 /* ListUserView */,
 				8496760C2C173D5C0010CFF5 /* TaskDetailView */,
 				8496760B2C173D2F0010CFF5 /* EditTaskView */,
 				8496760A2C173D170010CFF5 /* Notification */,
@@ -188,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				849676012C173AD20010CFF5 /* UsersViewController.swift */,
+				84511DCB2C18134B009FADF8 /* CommentTableViewCell.swift */,
 			);
 			path = UsersView;
 			sourceTree = "<group>";
@@ -358,6 +383,8 @@
 				849675FE2C16C20F0010CFF5 /* HistoryViewController.swift in Sources */,
 				847D67632C145F3C00AA7795 /* LoginViewController.swift in Sources */,
 				849676022C173AD20010CFF5 /* UsersViewController.swift in Sources */,
+				84511DCC2C18134B009FADF8 /* CommentTableViewCell.swift in Sources */,
+				84511DD42C188E3D009FADF8 /* DetailViewController.swift in Sources */,
 				847481E12C147B760076F4D5 /* RegisterViewController.swift in Sources */,
 				847481EB2C1534EF0076F4D5 /* TaskDetailViewController.swift in Sources */,
 				849675FC2C164A6C0010CFF5 /* AddNotificationViewController.swift in Sources */,
@@ -367,6 +394,7 @@
 				847D67612C145F3C00AA7795 /* SceneDelegate.swift in Sources */,
 				847481E92C14F8670076F4D5 /* Task.swift in Sources */,
 				847481ED2C15382E0076F4D5 /* Comment.swift in Sources */,
+				84511DCF2C182520009FADF8 /* ListUser.swift in Sources */,
 				847481E32C147F970076F4D5 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

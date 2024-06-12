@@ -17,7 +17,7 @@ class PersonViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        self.title = "Person"
+        self.title = "Profile"
         setupLogout()
     }
     

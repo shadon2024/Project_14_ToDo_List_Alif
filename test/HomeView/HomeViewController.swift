@@ -83,63 +83,27 @@ class HomeViewController: UIViewController {
         }
     }
     
+    
+    
     // Обработчик нажатия на кнопку добавления задачи
     @objc func addTaskButtonTapped() {
-        // Реализация добавления новой задачи
         
-        let alertController = UIAlertController(title: "Добавить задачу", message: nil, preferredStyle: .alert) // Создаем контроллер предупреждения
+        let detailView = DetailViewController()
+        let nav = UINavigationController(rootViewController: detailView)
+        nav.modalPresentationStyle = .pageSheet
         
-        // Добавляем текстовые поля для ввода данных о задаче
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Название"
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Описание"
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Статус"
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Исполнитель"
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Срок выполнения"
-        }
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Постановщик"
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
         }
         
-        // Добавляем кнопку "Добавить"
-        let addAction = UIAlertAction(title: "Добавить", style: .default) { (_) in
-            guard let taskName = alertController.textFields?[0].text,
-                  let taskDescription = alertController.textFields?[1].text,
-                  let taskStatus = alertController.textFields?[2].text,
-                  let taskExecutor = alertController.textFields?[3].text,
-                  let taskDeadline = alertController.textFields?[4].text,
-                  let taskDirector = alertController.textFields?[5].text else { return }
-            
-            // Создаем словарь с данными о задаче и добавляем его в базу данных Firebase
-            let task = ["name": taskName,
-                        "description": taskDescription,
-                        "status": taskStatus,
-                        "executor": taskExecutor,
-                        "deadline": taskDeadline,
-                        "director": taskDirector]
-            
-            self.ref.childByAutoId().setValue(task)
+        present(nav, animated: true, completion: nil)
             
         }
-        
-        // Добавляем кнопку "Отмена"
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-        
-        alertController.addAction(addAction) // Добавляем кнопку "Добавить" в контроллер предупреждения
-        alertController.addAction(cancelAction) // Добавляем кнопку "Отмена" в контроллер предупреждения
-        
-        present(alertController, animated: true, completion: nil) // Отображаем контроллер предупреждения
-    }
     
 }
+
+
 
 
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -199,3 +163,87 @@ extension HomeViewController: TaskUpdateDelegate {
         tableView.reloadData() // Обновляем таблицу
     }
 }
+
+
+
+
+
+
+
+
+
+/*
+ 
+ // Обработчик нажатия на кнопку добавления задачи
+ @objc func addTaskButtonTapped() {
+     
+     let detailView = DetailViewController()
+     let nav = UINavigationController(rootViewController: detailView)
+     nav.modalPresentationStyle = .pageSheet
+     
+     if let sheet = nav.sheetPresentationController {
+         sheet.detents = [.medium(), .large()]
+         sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+     }
+     
+     present(nav, animated: true, completion: nil)
+//        // Реализация добавления новой задачи
+//
+//        let alertController = UIAlertController(title: "Добавить задачу", message: nil, preferredStyle: .alert) // Создаем контроллер предупреждения
+//
+//        // Добавляем текстовые поля для ввода данных о задаче
+//        alertController.addTextField { (textField) in
+//            textField.placeholder = "Название"
+//        }
+//        alertController.addTextField { (textField) in
+//            textField.placeholder = "Описание"
+//        }
+//        alertController.addTextField { (textField) in
+//            textField.placeholder = "Статус"
+//        }
+//        alertController.addTextField { (textField) in
+//            textField.placeholder = "Исполнитель"
+//        }
+//        alertController.addTextField { (textField) in
+//            textField.placeholder = "Срок выполнения"
+//        }
+//        alertController.addTextField { (textField) in
+//            textField.placeholder = "Постановщик"
+//        }
+//
+//        // Добавляем кнопку "Добавить"
+//        let addAction = UIAlertAction(title: "Добавить", style: .default) { (_) in
+//            guard let taskName = alertController.textFields?[0].text,
+//                  let taskDescription = alertController.textFields?[1].text,
+//                  let taskStatus = alertController.textFields?[2].text,
+//                  let taskExecutor = alertController.textFields?[3].text,
+//                  let taskDeadline = alertController.textFields?[4].text,
+//                  let taskDirector = alertController.textFields?[5].text else { return }
+//
+//            // Создаем словарь с данными о задаче и добавляем его в базу данных Firebase
+//            let task = ["name": taskName,
+//                        "description": taskDescription,
+//                        "status": taskStatus,
+//                        "executor": taskExecutor,
+//                        "deadline": taskDeadline,
+//                        "director": taskDirector]
+//
+//            self.ref.childByAutoId().setValue(task)
+         
+     }
+     
+     // Добавляем кнопку "Отмена"
+//        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+//
+//        alertController.addAction(addAction) // Добавляем кнопку "Добавить" в контроллер предупреждения
+//        alertController.addAction(cancelAction) // Добавляем кнопку "Отмена" в контроллер предупреждения
+//
+//        present(alertController, animated: true, completion: nil) // Отображаем контроллер предупреждения
+//  }
+ 
+}
+
+ 
+ */
+ 
+ 

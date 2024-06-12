@@ -8,9 +8,12 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+import Firebase
 
 class RegisterViewController: UIViewController {
 
+    var userList: [ListUser] = [] // Массив для хранения user
+    var ref: DatabaseReference! // Ссылка на базу данных Firebase
     
     lazy var iconImage: UIImageView = {
         var image = UIImageView()
@@ -147,11 +150,17 @@ class RegisterViewController: UIViewController {
                 self.showError("Registration failed: \(error.localizedDescription)")
                 return
             }
+            
+            guard let user = authResult?.user else {
+                self.showError("Failed to get user information")
+                return
+            }
 
             // Обновление профиля пользователя
-            let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-            changeRequest?.displayName = username
-            changeRequest?.commitChanges { error in
+            //let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+            let changeRequest = user.createProfileChangeRequest()
+            changeRequest.displayName = username
+            changeRequest.commitChanges { error in
                 if let error = error {
                     // Показать ошибку обновления профиля
                     self.showError("Profile update failed: \(error.localizedDescription)")
@@ -161,24 +170,45 @@ class RegisterViewController: UIViewController {
                 // Перейти к следующему экрану или показать сообщение об успешной регистрации
                 self.showSuccess("Account created successfully")
                 
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                    self.navigateToHomeViewController()
+                
+//                DispatchQueue.main.async {
 //                    self.registerUser()
+//                    self.navigateToHomeViewController()
+//
+//
+//
 //                }
-                DispatchQueue.main.async {
-                    self.registerUser()
-                    self.navigateToHomeViewController()
-                    
-                    
-
-                }
+                // Сохранение данных пользователя в Realtime Database
+                self.saveUserToDatabase(user: user, email: email, username: username)
             }
         }
         
     }
     
+    
+    
+    private func saveUserToDatabase(user: User, email: String, username: String) {
+        let ref = Database.database().reference()
+        let listUser = ListUser(id: user.uid, email: email, name: username)
+        ref.child("users").child(user.uid).setValue(listUser.toDictionary()) { error, _ in
+            if let error = error {
+                self.showError("Failed to save user data: \(error.localizedDescription)")
+            } else {
+                // Перейти к следующему экрану или показать сообщение об успешной регистрации
+                self.showSuccess("Account created successfully")
+                
+                DispatchQueue.main.async {
+                    self.registerUser()
+                    self.navigateToHomeViewController()
+                }
+            }
+        }
+    }
+    
+    
+    
     func registerUser() {
-        // Код для регистрации пользователя
+
 
         // Если регистрация прошла успешно
         let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
@@ -230,8 +260,11 @@ class RegisterViewController: UIViewController {
         textFieldDidBeginEditing(userNameTextField)
         textFieldDidBeginEditing(passwordTextField)
         textFieldDidBeginEditing(passwordRepeatTextField)
-
+ 
+        
     }
+    
+    
     
     private func setupViews() {
         view.addSubview(userEmailTextField)
@@ -394,3 +427,39 @@ extension RegisterViewController: UITextFieldDelegate {
 }
 
 
+
+
+/*
+ 
+ 
+ ref = Database.database().reference().child("userList") // Получаем ссылку на узел "tasks" в базе данных Firebase
+ 
+ // Настройка обновления данных
+ ref.observe(DataEventType.value, with: { (snapshot) in
+     if snapshot.childrenCount > 0 {
+     self.userList.removeAll() // Очищаем массив задач
+         
+         // Проходимся по всем данным в снимке
+     for taskSnapshot in snapshot.children.allObjects as! [DataSnapshot] {
+     if let taskObject = taskSnapshot.value as? [String: AnyObject] {
+         let listEmail = taskObject["email"]
+         let listName = taskObject["name"]
+ 
+                 // Создаем объект задачи из данных снимка и добавляем его в массив задач
+         let task = ListUser(id: taskSnapshot.key,
+                             email: listEmail as? String ?? "",
+                             name: listName as? String ?? "")
+             self.userList.append(task)
+             }
+         }
+         
+         
+     let taski = ["email": email,
+                 "name": username,
+         
+     self.ref.childByAutoId().setValue(taski)
+         
+     }
+ })
+ 
+ */
